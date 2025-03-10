@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "SSH"}
+    agent {label "ANSIBLE"}
 
     stages {
         stage('Clone Repository') {
