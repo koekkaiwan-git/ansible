@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {lable "ansible"}
 
     stages {
         stage('Clone Repository') {
