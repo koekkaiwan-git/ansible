@@ -1,0 +1,24 @@
+---
+- name: Update Security Patches on Ubuntu 24.04
+  hosts: jenkins_server
+  become: true
+  vars:
+    ansible_python_interpreter: /usr/bin/python3  # กำหนด Python Interpreter
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+    - name: Apply security updates only
+      apt:
+        upgrade: dist
+        only_upgrade: yes
+
+    - name: Clean up old packages
+      apt:
+        autoremove: yes
+        autoclean: yes
+
+    - name: reboot Server
+      reboot:
+        reboot_timeout: 300
