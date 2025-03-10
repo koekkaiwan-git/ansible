@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git credentialsId: 'jenkins-git', url: 'https://github.com/koekkaiwan-git/ansible.git'
+                git branch: 'main', credentialsId: 'jenkins-git', url: 'https://github.com/koekkaiwan-git/ansible.git'
             }
         }
         stage('Run Ansible') {
