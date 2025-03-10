@@ -4,8 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-          ansible --version
-          ansible-playbook --version
+          java --version
         '''
             }
         }
