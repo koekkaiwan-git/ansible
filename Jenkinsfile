@@ -9,8 +9,10 @@ pipeline {
         }
         stage('Run Ansible') {
             steps {
-                sh 'ansible --version
-                whoami'
+                sh '''
+                ansible --version
+                whoami
+                '''
             }
         }
     }
