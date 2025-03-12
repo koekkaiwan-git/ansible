@@ -23,15 +23,12 @@
       reboot:
         reboot_timeout: 300
 
-    - name: Show Uptime Server
-      hosts: all
-      tasks: 
-        - name: Uptime Server
-          ansible.builtin.command: uptime 
-          regitser: uptime_output
+    - name: Uptime Server
+      ansible.builtin.command: uptime 
+      regitser: uptime_output
 
-        - name: show uptime result
-          debug:
-          msg: "{{ uptime_output.stdout }}"
+    - name: show uptime result
+      debug:
+      msg: "{{ uptime_output.stdout }}"
 
       
