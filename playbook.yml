@@ -20,15 +20,15 @@
         autoclean: yes
 
     - name: reboot Server
-      reboot:
+      ansible.builin.reboot:
         reboot_timeout: 300
 
     - name: Uptime Server
       ansible.builtin.command: uptime 
-      regitser: uptime_output
+      register: uptime_output
 
     - name: show uptime result
-      debug:
+      ansible.builtin.debug:
         msg: "{{ uptime_output.stdout }}"
 
       
