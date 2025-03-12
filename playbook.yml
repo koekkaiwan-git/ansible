@@ -20,7 +20,7 @@
         autoclean: yes
 
     - name: reboot Server
-      ansible.builin.reboot:
+      ansible.builtin.reboot:
         reboot_timeout: 300
 
     - name: Uptime Server
