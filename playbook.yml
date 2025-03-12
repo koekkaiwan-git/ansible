@@ -29,6 +29,6 @@
 
     - name: show uptime result
       debug:
-      msg: "{{ uptime_output.stdout }}"
+        msg: "{{ uptime_output.stdout }}"
 
       
