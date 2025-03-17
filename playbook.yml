@@ -25,7 +25,7 @@
     
     - name: reboot server if need
       ansible.builtin.reboot:
-      when: reboot | grep default(false) | bool
+      when: reboot | default(false) | bool
 
     - name: Uptime Server
       ansible.builtin.command: uptime 
