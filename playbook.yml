@@ -19,9 +19,13 @@
         autoremove: yes
         autoclean: yes
 
-    - name: reboot Server
+    - name: reboot Server status
+      ansible.builtin.debug:
+        msg: "Reboot is set to {{reboot}}"
+    
+    - name: reboot server if need
       ansible.builtin.reboot:
-        reboot_timeout: 300
+      when: reboot |grep default(false) | bool
 
     - name: Uptime Server
       ansible.builtin.command: uptime 
