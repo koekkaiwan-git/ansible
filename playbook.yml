@@ -21,7 +21,7 @@
 
     - name: reboot Server status
       ansible.builtin.debug:
-        msg: "Reboot is set to {{reboot}}"
+        msg: "Reboot is set to {{reboot | default(false) }}"
     
     - name: reboot server if need
       ansible.builtin.reboot:
