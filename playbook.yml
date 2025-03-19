@@ -7,10 +7,10 @@
 
   tasks:
     - name: Import tasks Install Package
-      import_task: common/install_package.yml
+      import_tasks: common/install_package.yml
 
     - name: import_task clear_Package
-      import_task: common/clear_package.yml
+      import_tasks: common/clear_package.yml
     
     - name: import_task Reboot 
-      import_task: common/reboot.yml
+      import_tasks: common/reboot.yml
