@@ -1,7 +1,7 @@
 ---
 - name: Update Package 
   apt:
-    update_case: yes
+    update_cache: yes
 - name: Update Security OS only
   apt:
     upgrade: dist
