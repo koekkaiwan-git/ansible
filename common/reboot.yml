@@ -1,0 +1,16 @@
+---
+- name: reboot Server status
+  ansible.builtin.debug:
+  msg: "Reboot is set to {{reboot | default(false) }}"
+    
+- name: reboot server if need
+  ansible.builtin.reboot:
+  when: reboot | default(false) | bool
+
+- name: Uptime Server
+  ansible.builtin.command: uptime 
+  register: uptime_output
+
+- name: show uptime result
+  ansible.builtin.debug:
+  msg: "{{ uptime_output.stdout }}"

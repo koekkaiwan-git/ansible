@@ -4,35 +4,13 @@
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3  # กำหนด Python Interpreter
+
   tasks:
-    - name: Update package cache
-      apt:
-        update_cache: yes
+    - name: Import tasks Install Package
+      import_task: common/install_package.yml
 
-    - name: Apply security updates only
-      apt:
-        upgrade: dist
-        only_upgrade: yes
-
-    - name: Clean up old packages
-      apt:
-        autoremove: yes
-        autoclean: yes
-
-    - name: reboot Server status
-      ansible.builtin.debug:
-        msg: "Reboot is set to {{reboot | default(false) }}"
+    - name: import_task clear_Package
+      import_task: common/clear_package.yml
     
-    - name: reboot server if need
-      ansible.builtin.reboot:
-      when: reboot | default(false) | bool
-
-    - name: Uptime Server
-      ansible.builtin.command: uptime 
-      register: uptime_output
-
-    - name: show uptime result
-      ansible.builtin.debug:
-        msg: "{{ uptime_output.stdout }}"
-
-      
+    - name: import_task Reboot 
+      import_task: common/reboot.yml

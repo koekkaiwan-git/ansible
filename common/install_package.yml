@@ -1,0 +1,8 @@
+---
+- name: Update Package 
+  apt:
+    update_case: yes
+- name: Update Security OS only
+  apt:
+    upgrade: dist
+    only_upgrade: yes

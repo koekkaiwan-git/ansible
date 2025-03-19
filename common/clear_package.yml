@@ -1,0 +1,6 @@
+---
+  - name: Remove Package and clear Package
+    apt:
+    autoremove: yes
+    autoclear: yes
+    
