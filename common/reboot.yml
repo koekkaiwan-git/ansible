@@ -1,7 +1,7 @@
 ---
 - name: reboot Server status
   ansible.builtin.debug:
-  msg: "Reboot is set to {{reboot | default(false) }}"
+    msg: "Reboot is set to {{reboot | default(false) }}"
     
 - name: reboot server if need
   ansible.builtin.reboot:
@@ -13,4 +13,4 @@
 
 - name: show uptime result
   ansible.builtin.debug:
-  msg: "{{ uptime_output.stdout }}"
+    msg: "{{ uptime_output.stdout }}"
