@@ -1,6 +1,6 @@
 ---
 - name: Update Security Patches on Ubuntu 24.04
-  hosts: jenkins_server
+  hosts: zabbix_server
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3  # กำหนด Python Interpreter
