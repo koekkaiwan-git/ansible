@@ -1,6 +1,6 @@
 ---
 - name: Update Security Patches on Ubuntu 24.04
-  hosts: zabbix_server
+  hosts: "{{target_group}}"
   become: true
   vars:
     ansible_python_interpreter: /usr/bin/python3  # กำหนด Python Interpreter
