@@ -2,7 +2,7 @@ pipeline {
     agent {label "ANSIBLE"}
 
     parameters {
-        string(name: 'SERVER_GROUP', defaultValue: 'jenkins_server,zabbix_server', description: 'Enter the server group from inventory')
+        string(name: 'SERVER_GROUP', defaultValue: '', description: 'Enter the server group from inventory')
     }
 
     stages {
