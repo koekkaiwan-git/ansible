@@ -1,23 +1,36 @@
-- name: Login to Zabbix API
-  hosts: "{{target_group}}"
-  gather_facts: no
-  tasks:
-    - name: Authenticate to Zabbix API
-      uri:
-        url: "http://192.168.233.141/api_jsonrpc.php"
-        method: POST
-        body_format: json
-        body:
-          jsonrpc: "2.0"
-          method: "user.login"
-          params:
-            user: "Admin"
-            password: "admin"
-          id: 1
-          auth: null
-        headers:
-          Content-Type: "application/json"
-      register: login_response
+- name: Authenticate to Zabbix API
+  uri:
+    url: "http://192.168.233.141/api_jsonrpc.php"
+    method: POST
+    body_format: json
+    body:
+      jsonrpc: "2.0"
+      method: "user.login"
+      params:
+        user: "Admin"
+        password: "admin"
+      id: 1
+      auth: null
+    headers:
+      Content-Type: "application/json"
+  register: login_response
 
-    - debug:
-        var: login_response.json
+- name: Debug login response to show auth token
+  debug:
+    var: login_response.json.result
+
+- name: Use the authentication token for subsequent requests
+  uri:
+    url: "http://192.168.233.141/api_jsonrpc.php"
+    method: POST
+    body_format: json
+    body:
+      jsonrpc: "2.0"
+      method: "some.method"
+      params:
+        auth: "{{ login_response.json.result }}"
+        # other parameters as needed
+      id: 2
+    headers:
+      Content-Type: "application/json"
+  register: next_response
