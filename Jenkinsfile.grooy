@@ -1,5 +1,5 @@
 pipeline {
-    agent {label "ANSIBLE"}
+    agent { label "ANSIBLE" }
 
     parameters {
         string(name: 'SERVER_GROUP', defaultValue: '', description: 'Enter the server group from inventory')
@@ -11,12 +11,22 @@ pipeline {
                 git branch: 'main', credentialsId: 'jenkins-git', url: 'https://github.com/koekkaiwan-git/ansible.git'
             }
         }
+
         stage('Run Ansible') {
             steps {
                 sh """
                 ansible-playbook -i inventory.ini playbook.yml -v -e "target_group=${params.SERVER_GROUP}"
                 """
+            }
+        }
 
+        stage('Cleanup Workspace') {
+            steps {
+                sh """
+                echo "Cleanup Workspace"
+                rm -rf ${WORKSPACE}/*
+                echo "Cleanup Completed"
+                """
             }
         }
     }
